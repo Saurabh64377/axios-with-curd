@@ -19,6 +19,11 @@ const Formm = ({ data, setData, updateData, isEditMode, setIsEditMode }) => {
 
     }
 
+    const handleCancel = ()=>{
+        setIsEditMode(false)
+        inputSetData({ title: '', body: '' })
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -34,7 +39,7 @@ const Formm = ({ data, setData, updateData, isEditMode, setIsEditMode }) => {
                     setData(newUpdateData)
                 }
                 
-                alert("Updaeted successfully")
+                alert("Updated successfully")
                 inputSetData({ title: '', body: '' })
                 setIsEditMode(false)
 
@@ -53,14 +58,10 @@ const Formm = ({ data, setData, updateData, isEditMode, setIsEditMode }) => {
             console.log(error)
 
         }
-
-
     }
 
-
-
     return (
-        <div className='rounded-circle bg-danger-subtle p-4 '>
+        <div className='rounded-circle bg-danger-subtle p-4 d-flex align-items-center justify-content-center flex-column gap-2 '>
             <form onSubmit={handleSubmit}>
                 <div className='d-flex align-items-center justify-content-center flex-column'>
                     <div>
@@ -89,6 +90,7 @@ const Formm = ({ data, setData, updateData, isEditMode, setIsEditMode }) => {
                             value={inputData.body}
                         />
                     </div>
+                    <div>
                     {
                         isEditMode
                             ?
@@ -96,10 +98,13 @@ const Formm = ({ data, setData, updateData, isEditMode, setIsEditMode }) => {
                             :
                             <button className='btn btn-success btn-sm '>Add-data</button>
                     }
+                     
+                    </div>
 
 
                 </div>
             </form>
+            <button className='btn btn-danger btn-sm' onClick={handleCancel}>Cancel</button>
 
         </div>
     )
